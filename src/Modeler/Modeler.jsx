@@ -27,9 +27,11 @@ export const Modeler = (props) => {
         }
       });
 
-      modeler.importXML(xml)
-
-      setTimeout(() => modeler.get('eventBus').fire('import.done'), 10);
+      (async () => {
+        await modeler.importXML(xml)
+        modeler.get('canvas').zoom('fit-viewport');
+        setTimeout(() => modeler.get('eventBus').fire('import.done'), 10);
+      })()
 
       return () => {
         modeler.get('propertiesPanel').detach();
@@ -49,7 +51,7 @@ export const Modeler = (props) => {
         <PanelResizeHandle>
           <div className='VerticalResizeHandle'></div>
         </PanelResizeHandle>
-        <Panel defaultSize={25}>
+        <Panel defaultSize={25} minSize={10}>
           <div className='properties' ref={propertiesPanel}></div>
         </Panel>
       </PanelGroup>

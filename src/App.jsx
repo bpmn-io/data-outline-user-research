@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <PanelGroup autoSaveId="main" direction="vertical">
-        <Panel>
+        <Panel minSize={25}>
             <Modeler />
         </Panel>
         <PanelResizeHandle>
