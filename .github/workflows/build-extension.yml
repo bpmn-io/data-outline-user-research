@@ -1,0 +1,21 @@
+name: Build Modeler Extension
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    steps:
+      - name: git-checkout
+        uses: actions/checkout@v4
+      - name: Install all dependencies
+        run: npm ci
+      - name: Build Artifacts
+        run: npm run build  # The build command of your project
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./dist
