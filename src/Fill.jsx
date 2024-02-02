@@ -1,7 +1,7 @@
 export default function Fill(props) {
 
-  return <div>
+  return <>
     {props.children}
-  </div>
+  </>
 
 }

@@ -12,8 +12,8 @@ export const BottomPanel = (props) => {
   }, [])
 
   return (
-    <div>
+    <>
       {plugins.map((Plugin, i) => <Plugin key={i} {...props} subscribe={subscribe} />)}
-    </div>
+    </>
   )
 }
