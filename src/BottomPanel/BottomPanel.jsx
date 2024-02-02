@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { getPlugins } from "../util"
 
-
+import './bottom-panel.css'
 
 export const BottomPanel = (props) => {
 
@@ -13,6 +13,7 @@ export const BottomPanel = (props) => {
 
   return (
     <>
+      <div className="bottom-panel"></div>
       {plugins.map((Plugin, i) => <Plugin key={i} {...props} subscribe={subscribe} />)}
     </>
   )
