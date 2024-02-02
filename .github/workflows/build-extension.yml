@@ -4,10 +4,23 @@ on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    name: Build
+    name: Build and deploy page
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: git-checkout
         uses: actions/checkout@v4
@@ -15,7 +28,12 @@ jobs:
         run: npm ci
       - name: Build Artifacts
         run: npm run build  # The build command of your project
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
