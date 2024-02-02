@@ -7,6 +7,8 @@ import './Modeler.css'
 import xml from './diagram.xml?raw'
 import { getPlugins } from '../util';
 
+const connectors = import.meta.glob('./connectors/*.json', {eager: true});
+
 export const Modeler = (props) => {
 
   const modelerRef = useRef(null);
@@ -24,7 +26,8 @@ export const Modeler = (props) => {
         },
         keyboard: {
           bindTo: document
-        }
+        },
+        elementTemplates: Object.values(connectors)
       });
 
       (async () => {
