@@ -1,0 +1,26 @@
+.DropZone {
+  width: 100%;
+  height: 100%;
+  z-index: 1000000000000000;
+}
+
+.DropZone .Note {
+  display: none;
+  width: calc(100vw - 20px);
+  height: calc(100vh - 20px);
+  pointer-events: none;
+  z-index: 1000000000000000;
+  margin: 10px;
+  border: 10px dashed #ccc;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80vh;
+  font-weight: bold;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.9);
+  position: absolute;
+}
+
+.DropZone.dragging .Note {
+  display: block;
+}
